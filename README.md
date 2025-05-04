@@ -13,7 +13,7 @@ Leveraging **SecureGPT**, AWS Lambda, and Plotly visualizations, the system fetc
 
 ## 📌 Problem Statement
 
-Organizations often struggle to unify and interpret complex security data from diverse sources — such as anomaly logs, network events, and compliance alerts. Static dashboards fall short in delivering real-time, role-specific insights, leading to delayed responses, compliance violations, and increased risk exposure.
+Organizations often struggle to unify and interpret complex security data from diverse sources such as anomaly logs, network events, and compliance alerts. Static dashboards fall short in delivering real-time, role-specific insights, leading to delayed responses, compliance violations, and increased risk exposure.
 
 This project aims to solve that with:
 - A **multi-agent AI system** that interprets user queries.
@@ -23,9 +23,9 @@ This project aims to solve that with:
 ## 🛠 Features
 
 - 🔍 **Natural Language Query Support** (via SecureGPT)
-- 📊 **Role-Based Dashboards** (for CISOs, compliance officers, engineers)
-- 📈 **Interactive Charts** (line, bar, pie, heatmaps)
-- 🧠 **Auto-Summarized Insights** (executive-level summaries)
+- 📊 **Role-Based Dashboards** (for Technical Teams and Business Leaders)
+- 📈 **Interactive Charts** (line, bar, pie, heatmaps, sankey charts, etc.)
+- 🧠 **Auto-Summarized Insights** (executive-level summaries, etc.)
 - 🔐 **Secure Cloud Architecture** (AWS S3, Lambda, API Gateway)
 - ⚙️ **Serverless Deployment** for scalable performance
 
@@ -33,7 +33,7 @@ This project aims to solve that with:
 
 | Component              | Technology Used           |
 |------------------------|---------------------------|
-| Frontend               | React (Create React App)  |
+| Frontend               | React, HTML, CSS          |
 | Backend                | AWS Lambda                |
 | AI Integration         | SecureGPT (via API)       |
 | Visualizations         | Plotly                    |
@@ -43,7 +43,7 @@ This project aims to solve that with:
 
 ## 📐 Architecture Diagram
 
-![System Architecture](architecture_diagram.png)
+![System Architecture](![image](https://github.com/user-attachments/assets/b4ac64d0-1d8b-4100-9fa8-4e77b5b5b066))
 
 ## 📂 Project Structure
 
@@ -66,7 +66,7 @@ Daen-690-Project/
 2. Configure S3 buckets for input and output datasets.
 3. Set environment variables and deploy using AWS CLI or Console.
 
-### Frontend (React App)
+### Frontend (React JS, HTML, CSS)
 ```bash
 cd User\ Interface
 npm install
