@@ -148,10 +148,10 @@ Then in AWS Lambda:
 ---
 ### 🔹 Step 3: Configure Lambda Function Settings
 
-After uploading your Lambda function zip:
+After uploading your Lambda function zip under *Configuration → General settings*
 
 - Set **Memory** to **1024 MB**
-- Set **Timeout** to **15 minutes** under *Configuration → General settings*
+- Set **Timeout** to **15 minutes** 
 
 ---
 
@@ -160,17 +160,16 @@ After uploading your Lambda function zip:
 - The Secure GPT endpoint requires SSL, So upload your `.pem` file to `certificate-bucket`
 
 ---
+### 🔹 Step 5: Set Up API Gateway for the Pipeline
 
-### 🔹 Step 5: Secure with an API Key
+To expose `pipeline_agent` as an REST API:
 
-1. Go to **Usage Plans**
-2. Create a **new usage plan**
-3. Add a new **API key** (e.g., `dashboard-ui-key`)
-4. Link the key to your deployed **POST /dashboard** method
-5. Update your Lambda code or frontend to send the API key in request headers:
-```http
-x-api-key: your-api-key-value
-```
+1. Go to API Gateway → Create API
+2. Choose REST API 
+3. Add a ANY route linked to your `pipeline_agent` Lambda
+4. Enable CORS
+5. Add API key protection
+
 ---
 
 ### 🔹 Step 6: Deploy the API
@@ -183,15 +182,18 @@ You’ll get a public URL like: `https://your-api-id.execute-api.region.amazonaw
 
 ---
 
-### 🔹 Step 7: Set Up API Gateway for the Pipeline
+### 🔹 Step 7: Secure with an API Key
 
-To expose `pipeline_agent` as an REST API:
+1. Go to **Usage Plans**
+2. Create a **new usage plan**
+3. Add a new **API key** (e.g., `dashboard-ui-key`)
+4. Link the key to your deployed **POST /dashboard** method
+5. Update your Lambda code or frontend to send the API key in request headers:
+```http
+x-api-key: your-api-key-value
+```
 
-1. Go to API Gateway → Create API
-2. Choose REST API 
-3. Add a ANY route linked to your `pipeline_agent` Lambda
-4. Enable CORS
-5. Add API key protection
+---
 
 ### Backend (AWS Lambda)
 1. Create required Lambda functions (`SecureGPT`, `DashboardRenderer`, `SummaryAgent`, etc.)
