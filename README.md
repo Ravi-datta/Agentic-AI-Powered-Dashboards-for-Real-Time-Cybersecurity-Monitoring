@@ -148,7 +148,7 @@ Then in AWS Lambda:
 ---
 ### 🔹 Step 3: Configure Lambda Function Settings
 
-After uploading your Lambda function zip under *Configuration → General settings*
+After uploading your Lambda function zip, Under *Configuration → General settings*
 
 - Set **Memory** to **1024 MB**
 - Set **Timeout** to **15 minutes** 
@@ -195,10 +195,26 @@ x-api-key: your-api-key-value
 
 ---
 
+### 🔹 Step 8: Add Environment Variables for `validation_agent`
+
+To securely authenticate API calls from the `validation_agent`, store the required keys as environment variables in the Lambda configuration.
+
+✅ **Example: Setting Environment Variables for `validation_agent`**
+
+1. Open the **AWS Lambda Console**
+2. Navigate to your **`validation_agent`** function
+3. Click **Configuration → Environment variables → Edit**
+4. Add the following key-value pair:
+
+| Key               | Value                 |
+|------------------|-----------------------|
+| INTERNAL_API_KEY | your-secure-api-key   |
+
+---
+
 ### Backend (AWS Lambda)
 1. Create required Lambda functions (`SecureGPT`, `DashboardRenderer`, `SummaryAgent`, etc.)
 2. Configure S3 buckets for input and output datasets.
-3. Set environment variables and deploy using AWS CLI or Console.
 
 ### Frontend (React App)
 ```bash
