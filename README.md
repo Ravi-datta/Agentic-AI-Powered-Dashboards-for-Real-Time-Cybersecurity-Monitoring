@@ -57,7 +57,7 @@ Daen-690-Project/
 
 ## ⚙️ Installation & Setup
 
-This guide walks you through setting up a fully functional AI-powered dashboard pipeline using AWS Lambda, Secure GPT, S3, and optionally API Gateway. It includes five interconnected Lambda functions, SecureGPT integration, and instructions for dependency setup using Klayers or Docker.
+This guide walks you through setting up a fully functional AI-powered dashboard pipeline using AWS Lambda, Secure GPT, S3, and API Gateway. It includes five interconnected Lambda functions, SecureGPT integration, and instructions for dependency setup using Klayers or Docker.
 
 ---
 
