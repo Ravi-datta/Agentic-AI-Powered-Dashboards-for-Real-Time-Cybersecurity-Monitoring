@@ -57,12 +57,121 @@ Daen-690-Project/
 
 ## ⚙️ Installation & Setup
 
+This guide walks you through setting up a fully functional AI-powered dashboard pipeline using AWS Lambda, Secure GPT, S3, and optionally API Gateway. It includes five interconnected Lambda functions, SecureGPT integration, and instructions for dependency setup using Klayers or Docker.
+
+---
+
+## ✅ Prerequisites
+
+- AWS account with permissions for:
+  - Lambda
+  - S3
+  - IAM
+  - (Optional) API Gateway
+- Docker installed
+- Secure GPT API key
+- Sample CSV files for testing
+- Optional: SSL .pem certificate for Secure GPT
+
+---
+
+## 🧩 Lambda Functions Overview
+
+| Function Name         | Purpose                                         |
+|-----------------------|--------------------------------------------------|
+| securegpt_agent       | Parses user queries into dashboard configs       |
+| validation_agent      | Fixes broken GPT-generated configs               |
+| dashboard_rendering   | Converts JSON config to Plotly dashboard HTML    |
+| summary_agent         | Creates executive-friendly narrative summaries   |
+| pipeline_agent        | Orchestrates the full end-to-end pipeline        |
+
+---
+
+## 🛠 Setup Instructions
+
+---
+
+### 🔹 Step 1: Create Required S3 Buckets
+
+| Bucket Name               | Purpose                                |
+|---------------------------|----------------------------------------|
+| secure-gpt-cert-bucket    | Store the .pem certificate (if used)   |
+| daen690-input-bucket      | Store all input CSVs                   |
+| daen690-output-bucket     | Store generated dashboards             |
+
+Upload your input files into appropriate folders, such as:
+
+- `network_anomaly_logs/network_anomalies.csv`
+- `stored_alerts/alert_dataset.csv`
+- `task_database/task_database.csv`
+- `cyber_compliance/cyber_compliance.csv`
+
+---
+
+### 🔹 Step 2: Package and Upload Lambda Functions
+
+Repeat the following process for each function folder:
+`securegpt_agent`, `validation_agent`, `dashboard_rendering`, `summary_agent`, `pipeline_agent`
+
+#### 🅰 Option A: Use Klayers (Preferred)
+
+1. Visit [Klayers GitHub](https://github.com/keithrozario/Klayers)
+2. Find the *latest ARN* for your AWS region and the needed library (e.g., pandas, plotly)
+3. In AWS Lambda → *Layers → Add Layer*
+   - Choose *Provide a layer version ARN*
+   - Paste the ARN
+   - Click *Add*
+
+✅ This is faster and cleaner for standard packages.
+
+---
+
+#### 🅱 Option B: Use Docker (Fallback)
+
+Use this when:
+- A required package is *not available* in Klayers
+- The *ARN is missing/outdated*
+
+```bash
+cd securegpt_agent
+docker run --rm -v $(pwd):/app -w /app python:3.9 \
+  pip install -r requirements.txt -t .
+zip -r securegpt_agent.zip .
+```
+
+Then in AWS Lambda:
+
+- Create function → Runtime: Python 3.9 or 3.11
+- Upload the `.zip` file
+
+---
+
+### 🔹 Step 3: Upload SSL Certificate (if needed)
+
+If your Secure GPT endpoint requires SSL:
+
+1. Upload your `.pem` file to `secure-gpt-cert-bucket`
+2. Name it exactly as used in `CERT_FILE_NAME`
+3. Ensure your Lambda functions have permission to access the bucket
+
+---
+
+### 🔹 Step 4: (Optional) Set Up API Gateway for the Pipeline
+
+To expose `pipeline_agent` as an HTTP API:
+
+1. Go to API Gateway → Create API
+2. Choose HTTP API or REST API
+3. Add a POST route linked to your `pipeline_agent` Lambda
+4. Enable CORS
+5. (Optional) Add API key protection
+
 ### Backend (AWS Lambda)
 1. Create required Lambda functions (`SecureGPT`, `DashboardRenderer`, `SummaryAgent`, etc.)
 2. Configure S3 buckets for input and output datasets.
 3. Set environment variables and deploy using AWS CLI or Console.
 
-### Frontend (React JS, HTML, CSS)
+### Frontend (React App)
 ```bash
 cd User\ Interface
 npm install
