@@ -161,7 +161,29 @@ After uploading your Lambda function zip:
 
 ---
 
-### 🔹 Step 5: Set Up API Gateway for the Pipeline
+### 🔹 Step 5: Secure with an API Key
+
+1. Go to **Usage Plans**
+2. Create a **new usage plan**
+3. Add a new **API key** (e.g., `dashboard-ui-key`)
+4. Link the key to your deployed **POST /dashboard** method
+5. Update your Lambda code or frontend to send the API key in request headers:
+```http
+x-api-key: your-api-key-value
+```
+---
+
+### 🔹 Step 6: Deploy the API
+
+- In the left sidebar, click **Actions → Deploy API**
+- Deployment Stage: `prod` (or name it something like `v1`)
+- Click **Deploy**
+
+You’ll get a public URL like: `https://your-api-id.execute-api.region.amazonaws.com/prod/dashboard`
+
+---
+
+### 🔹 Step 7: Set Up API Gateway for the Pipeline
 
 To expose `pipeline_agent` as an REST API:
 
