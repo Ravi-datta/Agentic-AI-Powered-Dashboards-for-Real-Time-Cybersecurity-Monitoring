@@ -2,7 +2,6 @@
 # Agentic AI for Dynamic Dashboards and Real-Time Cybersecurity Insights
 
 ![Project Status](https://img.shields.io/badge/status-Completed-brightgreen)
-![License](https://img.shields.io/badge/license-MIT-blue)
 ![Made with React](https://img.shields.io/badge/frontend-React-lightblue)
 ![SecureGPT](https://img.shields.io/badge/AI-SecureGPT-critical)
 
@@ -90,10 +89,10 @@ npm start
 
 - **Prompt**: "Summarize this month’s top 3 cybersecurity threats"
 - **Output**:
-  - Executive Summary
   - Line chart of threat frequency
   - Risk heatmap
   - Compliance status table
+  - Executive Summary
 
 ## 🧪 Testing & Performance
 
@@ -101,14 +100,6 @@ npm start
 - ⏱ Avg. dashboard generation time: **<10 seconds**
 - ✅ 92% accuracy in chart relevancy
 - 📊 Precision: 92.72%, Recall: 84.53%, F1: 88.40%
-
-## 🚀 Future Enhancements
-
-- 🤖 Voice-based prompt support
-- 🔁 Cross-dataset correlation
-- 🌐 Mobile app support
-- 📢 SMS/Email alerts for high-risk events
-- 🧬 3D & AR-based visualizations
 
 ## 👨‍💻 Team
 
