@@ -119,9 +119,3 @@ npm start
 - Yashaswi Gurram  
 - Vardhan Tharlapally
 
-## 📎 References
-
-- [AWS S3](https://aws.amazon.com/s3/)
-- [SecureGPT](https://openai.com/)
-- [React Docs](https://reactjs.org/)
-- [Plotly Docs](https://plotly.com/python/)
