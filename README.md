@@ -5,7 +5,7 @@
 
 In today’s fast-paced digital landscape, organizations face immense challenges in monitoring and maintaining cybersecurity across diverse data sources. This project presents an **AI-powered, real-time dashboard system** that processes natural language prompts to generate dynamic cybersecurity insights tailored to both technical and non-technical users.
 
-Leveraging **SecureGPT**, AWS Lambda, and Plotly visualizations, the system fetches, analyzes, and visualizes security data from logs, alerts, and task datasets, empowering stakeholders with instant, actionable intelligence — **no manual scripting or data wrangling required**.
+Leveraging **SecureGPT**, AWS Lambda, and Plotly visualizations, the system fetches, analyzes, and visualizes security data from logs, alerts, and task datasets, empowering stakeholders with instant, actionable intelligence with **no manual scripting or data wrangling required**.
 
 ## 📌 Problem Statement
 
@@ -67,11 +67,11 @@ This guide walks you through setting up a fully functional AI-powered dashboard 
   - Lambda
   - S3
   - IAM
-  - (Optional) API Gateway
+  - API Gateway
 - Docker installed
 - Secure GPT API key
 - Sample CSV files for testing
-- Optional: SSL .pem certificate for Secure GPT
+- SSL .pem certificate for Secure GPT
 
 ---
 
@@ -80,7 +80,7 @@ This guide walks you through setting up a fully functional AI-powered dashboard 
 | Function Name         | Purpose                                         |
 |-----------------------|--------------------------------------------------|
 | securegpt_agent       | Parses user queries into dashboard configs       |
-| validation_agent      | Fixes broken GPT-generated configs               |
+| validation_agent      | Validates the API Key                            |
 | dashboard_rendering   | Converts JSON config to Plotly dashboard HTML    |
 | summary_agent         | Creates executive-friendly narrative summaries   |
 | pipeline_agent        | Orchestrates the full end-to-end pipeline        |
@@ -93,18 +93,19 @@ This guide walks you through setting up a fully functional AI-powered dashboard 
 
 ### 🔹 Step 1: Create Required S3 Buckets
 
-| Bucket Name               | Purpose                                |
-|---------------------------|----------------------------------------|
-| secure-gpt-cert-bucket    | Store the .pem certificate (if used)   |
-| daen690-input-bucket      | Store all input CSVs                   |
-| daen690-output-bucket     | Store generated dashboards             |
+| S3 Bucket Name                   | Purpose                                |
+|----------------------------------|----------------------------------------|
+| certificate-bucket               | Store the .pem certificate of SecureGPT|
+| daen690-input-files              | Store all input CSVs                   |
+| daen690-output-data              | Store generated dashboards             |
+| dataset-schema                   | Stores the metadata of all datasets    |
 
-Upload your input files into appropriate folders, such as:
+Create four folders in daen690-input-files bucket as below and upload your input files into appropriate folders, such as:
 
 - `network_anomaly_logs/network_anomalies.csv`
 - `stored_alerts/alert_dataset.csv`
 - `task_database/task_database.csv`
-- `cyber_compliance/cyber_compliance.csv`
+- `anomaly_logs/anomaly_logs.csv`
 
 ---
 
@@ -146,17 +147,22 @@ Then in AWS Lambda:
 
 ---
 
-### 🔹 Step 3: Upload SSL Certificate (if needed)
+### 🔹 Step 3: Upload SSL Certificate
 
-If your Secure GPT endpoint requires SSL:
-
-1. Upload your `.pem` file to `secure-gpt-cert-bucket`
-2. Name it exactly as used in `CERT_FILE_NAME`
-3. Ensure your Lambda functions have permission to access the bucket
+- The Secure GPT endpoint requires SSL, So upload your `.pem` file to `certificate-bucket`
 
 ---
 
-### 🔹 Step 4: (Optional) Set Up API Gateway for the Pipeline
+"""### 🔹 Step 4: Configure Lambda Function Settings
+
+After uploading your Lambda function zip:
+
+- Set **Memory** to **1024 MB**
+- Set **Timeout** to **15 minutes** under *Configuration → General settings*
+
+---
+
+### 🔹 Step 5: (Optional) Set Up API Gateway for the Pipeline
 
 To expose `pipeline_agent` as an HTTP API:
 
