@@ -1,10 +1,6 @@
 
 # Agentic AI for Dynamic Dashboards and Real-Time Cybersecurity Insights
 
-![Project Status](https://img.shields.io/badge/status-Completed-brightgreen)
-![Made with React](https://img.shields.io/badge/frontend-React-lightblue)
-![SecureGPT](https://img.shields.io/badge/AI-SecureGPT-critical)
-
 ## 🧠 Overview
 
 In today’s fast-paced digital landscape, organizations face immense challenges in monitoring and maintaining cybersecurity across diverse data sources. This project presents an **AI-powered, real-time dashboard system** that processes natural language prompts to generate dynamic cybersecurity insights tailored to both technical and non-technical users.
@@ -43,7 +39,7 @@ This project aims to solve that with:
 
 ## 📐 Architecture Diagram
 
-![System Architecture](![image](https://github.com/user-attachments/assets/b4ac64d0-1d8b-4100-9fa8-4e77b5b5b066))
+![System Architecture](https://github.com/user-attachments/assets/b4ac64d0-1d8b-4100-9fa8-4e77b5b5b066)
 
 ## 📂 Project Structure
 
@@ -77,13 +73,16 @@ npm start
 ## 📊 How to Use
 
 1. Open the dashboard interface.
-2. Enter a **natural language prompt**, e.g., “Show anomaly trends for the last 30 days.”
-3. The system:
+2. **Enter your API Key** to gain access.
+   - The system validates the key via AWS API Gateway and Lambda.
+   - If valid, the interface unlocks prompt entry.
+3. Enter a **natural language prompt**, e.g., “Show anomaly trends for the last 30 days.”
+4. The system:
    - Sends query to SecureGPT
    - Selects datasets
    - Renders charts
    - Generates narrative summary
-4. View and download the dashboard.
+5. View and download the dashboard.
 
 ## 📈 Example Use Case
 
@@ -103,10 +102,10 @@ npm start
 
 ## 👨‍💻 Team
 
-- Ravi Datta Rachuri  
-- Shuchi Nirav Shah  
-- Akash Bejugam  
-- Datha Vaishnavi Kondur  
-- Yashaswi Gurram  
-- Vardhan Tharlapally
+- [Ravi Datta Rachuri](mailto:rrachuri@gmu.edu)  
+- [Shuchi Nirav Shah](mailto:sshah59@gmu.edu)  
+- [Akash Bejugam](mailto:abejuga2@gmu.edu)  
+- [Datha Vaishnavi Kondur](mailto:dkondur@gmu.edu)  
+- [Yashaswi Gurram](mailto:ygurram@gmu.edu)  
+- [Vardhan Tharlapally](mailto:vtharlap@gmu.edu)
 
