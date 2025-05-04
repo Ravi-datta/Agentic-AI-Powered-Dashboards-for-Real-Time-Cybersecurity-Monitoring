@@ -146,14 +146,7 @@ Then in AWS Lambda:
 - Upload the `.zip` file
 
 ---
-
-### 🔹 Step 3: Upload SSL Certificate
-
-- The Secure GPT endpoint requires SSL, So upload your `.pem` file to `certificate-bucket`
-
----
-
-"""### 🔹 Step 4: Configure Lambda Function Settings
+### 🔹 Step 3: Configure Lambda Function Settings
 
 After uploading your Lambda function zip:
 
@@ -162,15 +155,21 @@ After uploading your Lambda function zip:
 
 ---
 
-### 🔹 Step 5: (Optional) Set Up API Gateway for the Pipeline
+### 🔹 Step 4: Upload SSL Certificate
 
-To expose `pipeline_agent` as an HTTP API:
+- The Secure GPT endpoint requires SSL, So upload your `.pem` file to `certificate-bucket`
+
+---
+
+### 🔹 Step 5: Set Up API Gateway for the Pipeline
+
+To expose `pipeline_agent` as an REST API:
 
 1. Go to API Gateway → Create API
-2. Choose HTTP API or REST API
-3. Add a POST route linked to your `pipeline_agent` Lambda
+2. Choose REST API 
+3. Add a ANY route linked to your `pipeline_agent` Lambda
 4. Enable CORS
-5. (Optional) Add API key protection
+5. Add API key protection
 
 ### Backend (AWS Lambda)
 1. Create required Lambda functions (`SecureGPT`, `DashboardRenderer`, `SummaryAgent`, etc.)
