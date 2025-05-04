@@ -49,7 +49,7 @@ Daen-690-Project/
 ├── Dashboard rendering agent.py   # Chart rendering via Plotly
 ├── Pipeline agent.py              # Orchestrates flow between agents
 ├── Summary agent.py               # Executive-level narrative generation
-├── Validation agent.mjs           # API key and input validation
+├── Validation agent.mjs           # API key validation
 ├── User Interface/                # React-based UI
 │   ├── public/                    # HTML and manifest
 │   └── src/                       # Components, assets, logic
@@ -206,15 +206,16 @@ To securely authenticate API calls from the `validation_agent`, store the requir
 3. Click **Configuration → Environment variables → Edit**
 4. Add the following key-value pair:
 
-| Key               | Value                 |
+| Key              | Value                 |
 |------------------|-----------------------|
-| INTERNAL_API_KEY | your-secure-api-key   |
+| API_KEY          | your-secure-api-key   |
 
 ---
 
 ### Backend (AWS Lambda)
 1. Create required Lambda functions (`SecureGPT`, `DashboardRenderer`, `SummaryAgent`, etc.)
 2. Configure S3 buckets for input and output datasets.
+3. Setup proper API-Gateway
 
 ### Frontend (React App)
 ```bash
@@ -240,7 +241,7 @@ npm start
 
 ## 📈 Example Use Case
 
-- **Prompt**: "Summarize this month’s top 3 cybersecurity threats"
+- **Prompt**: "I’m a Network Engineer, Show me weekly threat counts, their severity levels, and whether the related alerts were SLA compliant.​"
 - **Output**:
   - Line chart of threat frequency
   - Risk heatmap
